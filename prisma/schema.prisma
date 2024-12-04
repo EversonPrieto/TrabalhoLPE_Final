@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -42,7 +42,7 @@ model Lanche {
 model Imagem {
   id            Int      @id @default(autoincrement())
   descricao     String   @db.VarChar(30)
-  codigoImagem  String   @db.LongText
+  codigoImagem  String   @db.Text
   lanche        Lanche   @relation(fields: [lancheId], references: [id], onDelete: Cascade)
   lancheId      Int
   @@map("imagens")
